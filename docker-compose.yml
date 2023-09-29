@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  # PHP Service
+  php:
+    build: 
+      context: .
+    volumes:
+      - ./:/var/www/html/myproject
+    ports:
+      - "8080:80"
+    networks:
+      - mynetwork
+
+  # RabbitMQ Service
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "15672:15672" # RabbitMQ Management UI
+      - "5672:5672"   # RabbitMQ AMQP Port
+    networks:
+      - mynetwork
+
+  # MySQL Service
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: korbaca2013
+      MYSQL_DATABASE: rabbitmq
+      MYSQL_USER: akreem
+      MYSQL_PASSWORD: korbaca2013
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+
+  # phpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_PORT=3306
+      - PMA_HOST=mysql
+      - MYSQL_USER= akreem
+      - MYSQL_PASSWORD= korbaca2013
+    ports:
+      - "8081:80"
+    networks:
+      - mynetwork
+    links:
+      - mysql
+
+networks:
+  mynetwork:
