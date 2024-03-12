@@ -6,7 +6,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 // Set up the database connection
 $dsn = 'mysql:host=mysql;dbname=rabbitmq';
 $username = 'akreem';
-$password = 'korbaca2013';
+$password = 'pass';
 try {
     $pdo = new PDO($dsn, $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
