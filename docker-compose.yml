@@ -25,10 +25,10 @@ services:
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: korbaca2013
+      MYSQL_ROOT_PASSWORD: pass
       MYSQL_DATABASE: rabbitmq
       MYSQL_USER: akreem
-      MYSQL_PASSWORD: korbaca2013
+      MYSQL_PASSWORD: pass
     ports:
       - "3306:3306"
     networks:
@@ -41,7 +41,7 @@ services:
       - PMA_PORT=3306
       - PMA_HOST=mysql
       - MYSQL_USER= akreem
-      - MYSQL_PASSWORD= korbaca2013
+      - MYSQL_PASSWORD= pass
     ports:
       - "8081:80"
     networks:
